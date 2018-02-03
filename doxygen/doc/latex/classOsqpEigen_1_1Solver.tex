@@ -1,0 +1,376 @@
+\section{Osqp\+Eigen\+:\+:Solver Class Reference}
+\label{classOsqpEigen_1_1Solver}\index{Osqp\+Eigen\+::\+Solver@{Osqp\+Eigen\+::\+Solver}}
+
+
+\mbox{\hyperlink{classOsqpEigen_1_1Solver}{Solver}} class is a wrapper of the O\+S\+QP O\+S\+Q\+P\+Workspace struct.  
+
+
+
+
+{\ttfamily \#include $<$Solver.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\label{classOsqpEigen_1_1Solver_a4de5403060c8798d0e138aaff0158cf9}} 
+\mbox{\hyperlink{classOsqpEigen_1_1Solver_a4de5403060c8798d0e138aaff0158cf9}{Solver}} ()
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\mbox{\label{classOsqpEigen_1_1Solver_a9539d922fa2e901a608155fb8e9385a5}} 
+\mbox{\hyperlink{classOsqpEigen_1_1Solver_a9539d922fa2e901a608155fb8e9385a5}{$\sim$\+Solver}} ()
+\begin{DoxyCompactList}\small\item\em Deconstructor. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classOsqpEigen_1_1Solver_a8487090a685d7653ea4011971c2f21f7}{init\+Solver}} ()
+\begin{DoxyCompactList}\small\item\em Initialize the solver with the actual initial data and settings. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classOsqpEigen_1_1Solver_a05c8a18a9d9ed9a74fc0dc26af711348}{is\+Initialized}} ()
+\begin{DoxyCompactList}\small\item\em Check if the solver is initialized. \end{DoxyCompactList}\item 
+\mbox{\label{classOsqpEigen_1_1Solver_a34214395818d23bc1552fc9bbcf0f47b}} 
+void \mbox{\hyperlink{classOsqpEigen_1_1Solver_a34214395818d23bc1552fc9bbcf0f47b}{clear\+Solver}} ()
+\begin{DoxyCompactList}\small\item\em Dealocate memory. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classOsqpEigen_1_1Solver_a11605685ef645c991b1f7935d1b854f4}{clear\+Solver\+Variables}} ()
+\begin{DoxyCompactList}\small\item\em Set to zero all the solver variables. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classOsqpEigen_1_1Solver_aade83b0e68b85d47d41a054f04d413aa}{solve}} ()
+\begin{DoxyCompactList}\small\item\em Solve the QP optimization problem. \end{DoxyCompactList}\item 
+const Eigen\+::\+Vector\+Xd \& \mbox{\hyperlink{classOsqpEigen_1_1Solver_a192a5f94034d4e467c6b557c2e06dd66}{get\+Solution}} ()
+\begin{DoxyCompactList}\small\item\em Get the optimization problem solution. \end{DoxyCompactList}\item 
+{\footnotesize template$<$int n$>$ }\\bool \mbox{\hyperlink{classOsqpEigen_1_1Solver_a7d1d9fdd8db3201a0ca2dcafbc289eea}{update\+Gradient}} (Eigen\+::\+Matrix$<$ c\+\_\+float, n, 1 $>$ \&gradient)
+\begin{DoxyCompactList}\small\item\em Update the linear part of the cost function (Gradient). \end{DoxyCompactList}\item 
+{\footnotesize template$<$int m$>$ }\\bool \mbox{\hyperlink{classOsqpEigen_1_1Solver_a48764153cec5e618021ab79586cc71b6}{update\+Lower\+Bound}} (Eigen\+::\+Matrix$<$ c\+\_\+float, m, 1 $>$ \&lower\+Bound)
+\begin{DoxyCompactList}\small\item\em Update the lower bounds limit (size m). \end{DoxyCompactList}\item 
+{\footnotesize template$<$int m$>$ }\\bool \mbox{\hyperlink{classOsqpEigen_1_1Solver_a69f1db45e10dae9c186cc0561532f018}{update\+Upper\+Bound}} (Eigen\+::\+Matrix$<$ c\+\_\+float, m, 1 $>$ \&upper\+Bound)
+\begin{DoxyCompactList}\small\item\em Update the upper bounds limit (size m). \end{DoxyCompactList}\item 
+{\footnotesize template$<$int m$>$ }\\bool \mbox{\hyperlink{classOsqpEigen_1_1Solver_a1af39f37500a6bad6896e8e6699880fa}{update\+Bounds}} (Eigen\+::\+Matrix$<$ c\+\_\+float, m, 1 $>$ \&lower\+Bound, Eigen\+::\+Matrix$<$ c\+\_\+float, m, 1 $>$ \&upper\+Bound)
+\begin{DoxyCompactList}\small\item\em Update both upper and lower bounds (size m). \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\bool \mbox{\hyperlink{classOsqpEigen_1_1Solver_a3380601ced1a2db8b226f7a32e5dd6b3}{update\+Hessian\+Matrix}} (const Eigen\+::\+Sparse\+Matrix$<$ T $>$ \&hessian\+Matrix)
+\begin{DoxyCompactList}\small\item\em Update the quadratic part of the cost function (Hessian). \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\bool \mbox{\hyperlink{classOsqpEigen_1_1Solver_a4eb3a0b2bec16b00dfc8334d4ff9ab8d}{update\+Linear\+Constraints\+Matrix}} (const Eigen\+::\+Sparse\+Matrix$<$ T $>$ \&linear\+Constraints\+Matrix)
+\begin{DoxyCompactList}\small\item\em Update the linear constraints matrix (A) \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T , int n, int m$>$ }\\bool \mbox{\hyperlink{classOsqpEigen_1_1Solver_a13f8e53aae03e483fa46066c7b93e066}{set\+Warm\+Start}} (const Eigen\+::\+Matrix$<$ T, n, 1 $>$ \&primal\+Variable, const Eigen\+::\+Matrix$<$ T, m, 1 $>$ \&dual\+Variable)
+\begin{DoxyCompactList}\small\item\em Set the entire. \end{DoxyCompactList}\item 
+\mbox{\label{classOsqpEigen_1_1Solver_a6665f91ac8c073b753cba4af1aad606e}} 
+{\footnotesize template$<$typename T , int n$>$ }\\bool {\bfseries set\+Primal\+Variable} (const Eigen\+::\+Matrix$<$ T, n, 1 $>$ \&primal\+Variable)
+\item 
+\mbox{\label{classOsqpEigen_1_1Solver_a18059c9138e3ce633ea71ea7a7b3d1e2}} 
+{\footnotesize template$<$typename T , int m$>$ }\\bool {\bfseries set\+Dual\+Variable} (const Eigen\+::\+Matrix$<$ T, m, 1 $>$ \&dual\+Variable)
+\item 
+\mbox{\label{classOsqpEigen_1_1Solver_a46445009598183b2887f81b4e9bb861f}} 
+{\footnotesize template$<$typename T , int n$>$ }\\bool {\bfseries get\+Primal\+Variable} (Eigen\+::\+Matrix$<$ T, n, 1 $>$ \&primal\+Variable)
+\item 
+\mbox{\label{classOsqpEigen_1_1Solver_a0a7310947551c696e433819a9a11e503}} 
+{\footnotesize template$<$typename T , int m$>$ }\\bool {\bfseries get\+Dual\+Variable} (Eigen\+::\+Matrix$<$ T, m, 1 $>$ \&dual\+Variable)
+\item 
+const std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classOsqpEigen_1_1Settings}{Osqp\+Eigen\+::\+Settings}} $>$ \& \mbox{\hyperlink{classOsqpEigen_1_1Solver_ad355be214417b0ccb1ec54913fe378c4}{settings}} () const
+\begin{DoxyCompactList}\small\item\em Get the solver settings pointer. \end{DoxyCompactList}\item 
+const std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classOsqpEigen_1_1Data}{Osqp\+Eigen\+::\+Data}} $>$ \& \mbox{\hyperlink{classOsqpEigen_1_1Solver_a2d93b3aae416bc29abe5fb1db16333e0}{data}} () const
+\begin{DoxyCompactList}\small\item\em Get the pointer to the solver initial data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{classOsqpEigen_1_1Solver}{Solver}} class is a wrapper of the O\+S\+QP O\+S\+Q\+P\+Workspace struct. 
+
+Definition at line 32 of file Solver.\+hpp.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\label{classOsqpEigen_1_1Solver_a11605685ef645c991b1f7935d1b854f4}} 
+\index{Osqp\+Eigen\+::\+Solver@{Osqp\+Eigen\+::\+Solver}!clear\+Solver\+Variables@{clear\+Solver\+Variables}}
+\index{clear\+Solver\+Variables@{clear\+Solver\+Variables}!Osqp\+Eigen\+::\+Solver@{Osqp\+Eigen\+::\+Solver}}
+\subsubsection{\texorpdfstring{clear\+Solver\+Variables()}{clearSolverVariables()}}
+{\footnotesize\ttfamily bool Osqp\+Eigen\+::\+Solver\+::clear\+Solver\+Variables (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Set to zero all the solver variables. 
+
+\begin{DoxyReturn}{Returns}
+true/false in case of success/failure. 
+\end{DoxyReturn}
+
+
+Definition at line 26 of file Solver.\+cpp.
+
+\mbox{\label{classOsqpEigen_1_1Solver_a2d93b3aae416bc29abe5fb1db16333e0}} 
+\index{Osqp\+Eigen\+::\+Solver@{Osqp\+Eigen\+::\+Solver}!data@{data}}
+\index{data@{data}!Osqp\+Eigen\+::\+Solver@{Osqp\+Eigen\+::\+Solver}}
+\subsubsection{\texorpdfstring{data()}{data()}}
+{\footnotesize\ttfamily const std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classOsqpEigen_1_1Data}{Osqp\+Eigen\+::\+Data}} $>$ \& Osqp\+Eigen\+::\+Solver\+::data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Get the pointer to the solver initial data. 
+
+\begin{DoxyReturn}{Returns}
+the pointer to \mbox{\hyperlink{classOsqpEigen_1_1Data}{Data}} object. 
+\end{DoxyReturn}
+
+
+Definition at line 148 of file Solver.\+cpp.
+
+\mbox{\label{classOsqpEigen_1_1Solver_a192a5f94034d4e467c6b557c2e06dd66}} 
+\index{Osqp\+Eigen\+::\+Solver@{Osqp\+Eigen\+::\+Solver}!get\+Solution@{get\+Solution}}
+\index{get\+Solution@{get\+Solution}!Osqp\+Eigen\+::\+Solver@{Osqp\+Eigen\+::\+Solver}}
+\subsubsection{\texorpdfstring{get\+Solution()}{getSolution()}}
+{\footnotesize\ttfamily const Eigen\+::\+Vector\+Xd \& Osqp\+Eigen\+::\+Solver\+::get\+Solution (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the optimization problem solution. 
+
+\begin{DoxyReturn}{Returns}
+an Eigen\+::\+Vector contating the optimization result. 
+\end{DoxyReturn}
+
+
+Definition at line 134 of file Solver.\+cpp.
+
+\mbox{\label{classOsqpEigen_1_1Solver_a8487090a685d7653ea4011971c2f21f7}} 
+\index{Osqp\+Eigen\+::\+Solver@{Osqp\+Eigen\+::\+Solver}!init\+Solver@{init\+Solver}}
+\index{init\+Solver@{init\+Solver}!Osqp\+Eigen\+::\+Solver@{Osqp\+Eigen\+::\+Solver}}
+\subsubsection{\texorpdfstring{init\+Solver()}{initSolver()}}
+{\footnotesize\ttfamily bool Osqp\+Eigen\+::\+Solver\+::init\+Solver (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initialize the solver with the actual initial data and settings. 
+
+\begin{DoxyReturn}{Returns}
+true/false in case of success/failure. 
+\end{DoxyReturn}
+
+
+Definition at line 66 of file Solver.\+cpp.
+
+\mbox{\label{classOsqpEigen_1_1Solver_a05c8a18a9d9ed9a74fc0dc26af711348}} 
+\index{Osqp\+Eigen\+::\+Solver@{Osqp\+Eigen\+::\+Solver}!is\+Initialized@{is\+Initialized}}
+\index{is\+Initialized@{is\+Initialized}!Osqp\+Eigen\+::\+Solver@{Osqp\+Eigen\+::\+Solver}}
+\subsubsection{\texorpdfstring{is\+Initialized()}{isInitialized()}}
+{\footnotesize\ttfamily bool Osqp\+Eigen\+::\+Solver\+::is\+Initialized (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Check if the solver is initialized. 
+
+\begin{DoxyReturn}{Returns}
+true if the solver is initialized. 
+\end{DoxyReturn}
+
+
+Definition at line 95 of file Solver.\+cpp.
+
+\mbox{\label{classOsqpEigen_1_1Solver_ad355be214417b0ccb1ec54913fe378c4}} 
+\index{Osqp\+Eigen\+::\+Solver@{Osqp\+Eigen\+::\+Solver}!settings@{settings}}
+\index{settings@{settings}!Osqp\+Eigen\+::\+Solver@{Osqp\+Eigen\+::\+Solver}}
+\subsubsection{\texorpdfstring{settings()}{settings()}}
+{\footnotesize\ttfamily const std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{classOsqpEigen_1_1Settings}{Osqp\+Eigen\+::\+Settings}} $>$ \& Osqp\+Eigen\+::\+Solver\+::settings (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Get the solver settings pointer. 
+
+\begin{DoxyReturn}{Returns}
+the pointer to \mbox{\hyperlink{classOsqpEigen_1_1Settings}{Settings}} object. 
+\end{DoxyReturn}
+
+
+Definition at line 143 of file Solver.\+cpp.
+
+\mbox{\label{classOsqpEigen_1_1Solver_a13f8e53aae03e483fa46066c7b93e066}} 
+\index{Osqp\+Eigen\+::\+Solver@{Osqp\+Eigen\+::\+Solver}!set\+Warm\+Start@{set\+Warm\+Start}}
+\index{set\+Warm\+Start@{set\+Warm\+Start}!Osqp\+Eigen\+::\+Solver@{Osqp\+Eigen\+::\+Solver}}
+\subsubsection{\texorpdfstring{set\+Warm\+Start()}{setWarmStart()}}
+{\footnotesize\ttfamily template$<$typename T , int n, int m$>$ \\
+bool Osqp\+Eigen\+::\+Solver\+::set\+Warm\+Start (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Matrix$<$ T, n, 1 $>$ \&}]{primal\+Variable,  }\item[{const Eigen\+::\+Matrix$<$ T, m, 1 $>$ \&}]{dual\+Variable }\end{DoxyParamCaption})}
+
+
+
+Set the entire. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em linear\+Constraints\+Matrix} & is the linear constraint matrix A \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true/false in case of success/failure. 
+\end{DoxyReturn}
+
+
+Definition at line 293 of file Solver.\+tpp.
+
+\mbox{\label{classOsqpEigen_1_1Solver_aade83b0e68b85d47d41a054f04d413aa}} 
+\index{Osqp\+Eigen\+::\+Solver@{Osqp\+Eigen\+::\+Solver}!solve@{solve}}
+\index{solve@{solve}!Osqp\+Eigen\+::\+Solver@{Osqp\+Eigen\+::\+Solver}}
+\subsubsection{\texorpdfstring{solve()}{solve()}}
+{\footnotesize\ttfamily bool Osqp\+Eigen\+::\+Solver\+::solve (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Solve the QP optimization problem. 
+
+\begin{DoxyReturn}{Returns}
+true/false in case of success/failure. 
+\end{DoxyReturn}
+
+
+Definition at line 108 of file Solver.\+cpp.
+
+\mbox{\label{classOsqpEigen_1_1Solver_a1af39f37500a6bad6896e8e6699880fa}} 
+\index{Osqp\+Eigen\+::\+Solver@{Osqp\+Eigen\+::\+Solver}!update\+Bounds@{update\+Bounds}}
+\index{update\+Bounds@{update\+Bounds}!Osqp\+Eigen\+::\+Solver@{Osqp\+Eigen\+::\+Solver}}
+\subsubsection{\texorpdfstring{update\+Bounds()}{updateBounds()}}
+{\footnotesize\ttfamily template$<$int m$>$ \\
+bool Osqp\+Eigen\+::\+Solver\+::update\+Bounds (\begin{DoxyParamCaption}\item[{Eigen\+::\+Matrix$<$ c\+\_\+float, m, 1 $>$ \&}]{lower\+Bound,  }\item[{Eigen\+::\+Matrix$<$ c\+\_\+float, m, 1 $>$ \&}]{upper\+Bound }\end{DoxyParamCaption})}
+
+
+
+Update both upper and lower bounds (size m). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lower\+Bound} & is the lower bound constraint vector; \\
+\hline
+{\em upper\+Bound} & is the upper bound constraint vector. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true/false in case of success/failure. 
+\end{DoxyReturn}
+
+
+Definition at line 72 of file Solver.\+tpp.
+
+\mbox{\label{classOsqpEigen_1_1Solver_a7d1d9fdd8db3201a0ca2dcafbc289eea}} 
+\index{Osqp\+Eigen\+::\+Solver@{Osqp\+Eigen\+::\+Solver}!update\+Gradient@{update\+Gradient}}
+\index{update\+Gradient@{update\+Gradient}!Osqp\+Eigen\+::\+Solver@{Osqp\+Eigen\+::\+Solver}}
+\subsubsection{\texorpdfstring{update\+Gradient()}{updateGradient()}}
+{\footnotesize\ttfamily template$<$int n$>$ \\
+bool Osqp\+Eigen\+::\+Solver\+::update\+Gradient (\begin{DoxyParamCaption}\item[{Eigen\+::\+Matrix$<$ c\+\_\+float, n, 1 $>$ \&}]{gradient }\end{DoxyParamCaption})}
+
+
+
+Update the linear part of the cost function (Gradient). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gradient} & is the Gradient vector. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true/false in case of success/failure. 
+\end{DoxyReturn}
+
+
+Definition at line 13 of file Solver.\+tpp.
+
+\mbox{\label{classOsqpEigen_1_1Solver_a3380601ced1a2db8b226f7a32e5dd6b3}} 
+\index{Osqp\+Eigen\+::\+Solver@{Osqp\+Eigen\+::\+Solver}!update\+Hessian\+Matrix@{update\+Hessian\+Matrix}}
+\index{update\+Hessian\+Matrix@{update\+Hessian\+Matrix}!Osqp\+Eigen\+::\+Solver@{Osqp\+Eigen\+::\+Solver}}
+\subsubsection{\texorpdfstring{update\+Hessian\+Matrix()}{updateHessianMatrix()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+bool Osqp\+Eigen\+::\+Solver\+::update\+Hessian\+Matrix (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Sparse\+Matrix$<$ T $>$ \&}]{hessian\+Matrix }\end{DoxyParamCaption})}
+
+
+
+Update the quadratic part of the cost function (Hessian). 
+
+It is assumed to be a simmetric matrix. \begin{DoxyNote}{Note}
+If the sparsity pattern is preserved the matrix is simply update otherwise the entire solver will be reinitialized. In this case the primal and dual variable are copied in the new workspace.
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em hessian} & is the Hessian matrix. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true/false in case of success/failure. 
+\end{DoxyReturn}
+
+
+Definition at line 99 of file Solver.\+tpp.
+
+
+
+References Osqp\+Eigen\+::\+Sparse\+Matrix\+Helper\+::eigen\+Sparse\+Matrix\+To\+Triplets(), and Osqp\+Eigen\+::\+Sparse\+Matrix\+Helper\+::osqp\+Sparse\+Matrix\+To\+Triplets().
+
+\mbox{\label{classOsqpEigen_1_1Solver_a4eb3a0b2bec16b00dfc8334d4ff9ab8d}} 
+\index{Osqp\+Eigen\+::\+Solver@{Osqp\+Eigen\+::\+Solver}!update\+Linear\+Constraints\+Matrix@{update\+Linear\+Constraints\+Matrix}}
+\index{update\+Linear\+Constraints\+Matrix@{update\+Linear\+Constraints\+Matrix}!Osqp\+Eigen\+::\+Solver@{Osqp\+Eigen\+::\+Solver}}
+\subsubsection{\texorpdfstring{update\+Linear\+Constraints\+Matrix()}{updateLinearConstraintsMatrix()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+bool Osqp\+Eigen\+::\+Solver\+::update\+Linear\+Constraints\+Matrix (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Sparse\+Matrix$<$ T $>$ \&}]{linear\+Constraints\+Matrix }\end{DoxyParamCaption})}
+
+
+
+Update the linear constraints matrix (A) 
+
+\begin{DoxyNote}{Note}
+If the sparsity pattern is preserved the matrix is simply update otherwise the entire solver will be reinitialized. In this case the primal and dual variable are copied in the new workspace.
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em linear\+Constraints\+Matrix} & is the linear constraint matrix A \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true/false in case of success/failure. 
+\end{DoxyReturn}
+
+
+Definition at line 197 of file Solver.\+tpp.
+
+
+
+References Osqp\+Eigen\+::\+Sparse\+Matrix\+Helper\+::eigen\+Sparse\+Matrix\+To\+Triplets(), and Osqp\+Eigen\+::\+Sparse\+Matrix\+Helper\+::osqp\+Sparse\+Matrix\+To\+Triplets().
+
+\mbox{\label{classOsqpEigen_1_1Solver_a48764153cec5e618021ab79586cc71b6}} 
+\index{Osqp\+Eigen\+::\+Solver@{Osqp\+Eigen\+::\+Solver}!update\+Lower\+Bound@{update\+Lower\+Bound}}
+\index{update\+Lower\+Bound@{update\+Lower\+Bound}!Osqp\+Eigen\+::\+Solver@{Osqp\+Eigen\+::\+Solver}}
+\subsubsection{\texorpdfstring{update\+Lower\+Bound()}{updateLowerBound()}}
+{\footnotesize\ttfamily template$<$int m$>$ \\
+bool Osqp\+Eigen\+::\+Solver\+::update\+Lower\+Bound (\begin{DoxyParamCaption}\item[{Eigen\+::\+Matrix$<$ c\+\_\+float, m, 1 $>$ \&}]{lower\+Bound }\end{DoxyParamCaption})}
+
+
+
+Update the lower bounds limit (size m). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lower\+Bound} & is the lower bound constraint vector. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true/false in case of success/failure. 
+\end{DoxyReturn}
+
+
+Definition at line 32 of file Solver.\+tpp.
+
+\mbox{\label{classOsqpEigen_1_1Solver_a69f1db45e10dae9c186cc0561532f018}} 
+\index{Osqp\+Eigen\+::\+Solver@{Osqp\+Eigen\+::\+Solver}!update\+Upper\+Bound@{update\+Upper\+Bound}}
+\index{update\+Upper\+Bound@{update\+Upper\+Bound}!Osqp\+Eigen\+::\+Solver@{Osqp\+Eigen\+::\+Solver}}
+\subsubsection{\texorpdfstring{update\+Upper\+Bound()}{updateUpperBound()}}
+{\footnotesize\ttfamily template$<$int m$>$ \\
+bool Osqp\+Eigen\+::\+Solver\+::update\+Upper\+Bound (\begin{DoxyParamCaption}\item[{Eigen\+::\+Matrix$<$ c\+\_\+float, m, 1 $>$ \&}]{upper\+Bound }\end{DoxyParamCaption})}
+
+
+
+Update the upper bounds limit (size m). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em upper\+Bound} & is the upper bound constraint vector. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true/false in case of success/failure. 
+\end{DoxyReturn}
+
+
+Definition at line 52 of file Solver.\+tpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{Solver_8hpp}{Solver.\+hpp}}\item 
+\mbox{\hyperlink{Solver_8cpp}{Solver.\+cpp}}\item 
+\mbox{\hyperlink{Solver_8tpp}{Solver.\+tpp}}\end{DoxyCompactItemize}
