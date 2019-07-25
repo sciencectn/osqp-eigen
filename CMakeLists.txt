@@ -85,7 +85,7 @@ add_library(${LIBRARY_TARGET_NAME} ${${LIBRARY_TARGET_NAME}_SRC} ${${LIBRARY_TAR
 target_include_directories(${LIBRARY_TARGET_NAME} PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
   "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>")
 
-target_link_libraries(${LIBRARY_TARGET_NAME} PRIVATE osqp::osqp Eigen3::Eigen)
+target_link_libraries(${LIBRARY_TARGET_NAME} osqp::osqp Eigen3::Eigen)
 
 set_target_properties(${LIBRARY_TARGET_NAME} PROPERTIES
   VERSION ${PROJECT_VERSION}
@@ -143,15 +143,12 @@ if(BUILD_TESTING)
   # Add executable target with all test files 
   add_executable(test_all
           tests/MPCTest.cpp
-          tests/MPCUpdateMatricesTest.cpp
           tests/QPTest.cpp
           tests/SparseMatrixTest.cpp
           tests/UpdateMatricesTest.cpp
           )
-  target_link_libraries(test_all gtest_main)
+  target_link_libraries(test_all gtest_main ${LIBRARY_TARGET_NAME})
   add_test(NAME test_all COMMAND test_all)
 
 endif()
-
-
 

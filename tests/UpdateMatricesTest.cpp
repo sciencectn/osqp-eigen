@@ -108,17 +108,17 @@ TEST(QPProblem, SparsityChange)
               << ANSI_TXT_DFT << std::endl;
 };
 
-int main(int argc, char **argv)
-{
-    testing::InitGoogleTest(&argc, argv);
-    clock_t startTime, endTime;
+// int main(int argc, char **argv)
+// {
+//     testing::InitGoogleTest(&argc, argv);
+//     clock_t startTime, endTime;
 
-    startTime = clock();
-    bool outcome = RUN_ALL_TESTS();
-    endTime = clock();
+//     startTime = clock();
+//     bool outcome = RUN_ALL_TESTS();
+//     endTime = clock();
 
-    std::cerr << "Total time " << (static_cast<double>(endTime - startTime) / CLOCKS_PER_SEC)
-              << " seconds." << std::endl;
+//     std::cerr << "Total time " << (static_cast<double>(endTime - startTime) / CLOCKS_PER_SEC)
+//               << " seconds." << std::endl;
 
-    return outcome;
-}
+//     return outcome;
+// }
