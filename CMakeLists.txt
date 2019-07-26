@@ -27,7 +27,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED 11)
 
 project(OsqpEigen
   LANGUAGES CXX
-  VERSION 0.3.0)
+  VERSION 0.4.0)
 
 # add GNU dirs
 include(GNUInstallDirs)
@@ -71,7 +71,7 @@ set(${LIBRARY_TARGET_NAME}_SRC
   src/Solver.cpp)
 
 set(${LIBRARY_TARGET_NAME}_HDR
-  include/OsqpEigen.h
+  include/OsqpEigen/OsqpEigen.h
   include/OsqpEigen/Constants.hpp
   include/OsqpEigen/SparseMatrixHelper.hpp
   include/OsqpEigen/SparseMatrixHelper.tpp
@@ -86,6 +86,8 @@ target_include_directories(${LIBRARY_TARGET_NAME} PUBLIC "$<BUILD_INTERFACE:${CM
   "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>")
 
 target_link_libraries(${LIBRARY_TARGET_NAME} osqp::osqp Eigen3::Eigen)
+
+add_library(OsqpEigen::OsqpEigen ALIAS OsqpEigen)
 
 set_target_properties(${LIBRARY_TARGET_NAME} PROPERTIES
   VERSION ${PROJECT_VERSION}
