@@ -113,8 +113,7 @@ include(AddUninstallTarget)
 
 
 ## Testing
-option(BUILD_TESTING "Create tests using CMake" OFF)
-include(CTest)
+option(BUILD_TESTING "Create tests using CMake" ON)
 if(BUILD_TESTING)
   ############### Googletest stuff ####################
   # Download and unpack googletest at configure time

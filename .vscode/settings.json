@@ -1,3 +1,14 @@
 {
-    "C_Cpp.default.configurationProvider": "vector-of-bool.cmake-tools"
+    "cmake.configureOnOpen": true,
+    "C_Cpp.configurationWarnings": "Disabled",
+    "cmake.buildDirectory": "${workspaceRoot}/build_${buildType}",
+    "cmake.copyCompileCommands": "${workspaceRoot}/build_common/compile_commands.json",
+    "files.associations": {
+        "ostream": "cpp",
+        "stdexcept": "cpp",
+        "iostream": "cpp",
+        "chrono": "cpp",
+        "limits": "cpp"
+    }
 }
+
