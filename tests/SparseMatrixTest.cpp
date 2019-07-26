@@ -8,13 +8,8 @@
 // gtest
 #include <gtest/gtest.h>
 
-<<<<<<< HEAD
-#include <OsqpEigen.h>
-#include <osqp/osqp.h>
-=======
 #include <OsqpEigen/OsqpEigen.h>
 #include <osqp.h>
->>>>>>> pullreq
 
 template<typename T, int n, int m>
 bool computeTest(const Eigen::Matrix<T, n, m> &mEigen)
