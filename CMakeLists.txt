@@ -93,28 +93,30 @@ set_target_properties(${LIBRARY_TARGET_NAME} PROPERTIES
   VERSION ${PROJECT_VERSION}
   PUBLIC_HEADER "${${LIBRARY_TARGET_NAME}_HDR}")
 
-install(TARGETS ${LIBRARY_TARGET_NAME}
-  EXPORT  ${PROJECT_NAME}
-  COMPONENT runtime
-  LIBRARY       DESTINATION "${CMAKE_INSTALL_LIBDIR}"                            COMPONENT shlib
-  ARCHIVE       DESTINATION "${CMAKE_INSTALL_LIBDIR}"                            COMPONENT lib
-  RUNTIME       DESTINATION "${CMAKE_INSTALL_BINDIR}"                            COMPONENT bin
-  PUBLIC_HEADER DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/OsqpEigen")
+# install(TARGETS ${LIBRARY_TARGET_NAME}
+#   EXPORT  ${PROJECT_NAME}
+#   COMPONENT runtime
+#   LIBRARY       DESTINATION "${CMAKE_INSTALL_LIBDIR}"                            COMPONENT shlib
+#   ARCHIVE       DESTINATION "${CMAKE_INSTALL_LIBDIR}"                            COMPONENT lib
+#   RUNTIME       DESTINATION "${CMAKE_INSTALL_BINDIR}"                            COMPONENT bin
+#   PUBLIC_HEADER DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/OsqpEigen")
 
-include(InstallBasicPackageFiles)
-install_basic_package_files(${PROJECT_NAME}
-  VERSION ${${PROJECT_NAME}_VERSION}
-  COMPATIBILITY AnyNewerVersion
-  VARS_PREFIX ${PROJECT_NAME}
-  NO_CHECK_REQUIRED_COMPONENTS_MACRO
-  CONFIG_TEMPLATE ${CMAKE_SOURCE_DIR}/cmake/OsqpEigenConfig.cmake.in)
+# include(InstallBasicPackageFiles)
+# install_basic_package_files(${PROJECT_NAME}
+#   VERSION ${${PROJECT_NAME}_VERSION}
+#   COMPATIBILITY AnyNewerVersion
+#   VARS_PREFIX ${PROJECT_NAME}
+#   NO_CHECK_REQUIRED_COMPONENTS_MACRO
+#   CONFIG_TEMPLATE ${CMAKE_SOURCE_DIR}/cmake/OsqpEigenConfig.cmake.in)
 
-include(AddUninstallTarget)
+# include(AddUninstallTarget)
 
 
 ## Testing
-option(BUILD_TESTING "Create tests using CMake" ON)
+option(BUILD_TESTING "Create tests using CMake" OFF)
 if(BUILD_TESTING)
+  message("OSQP EIGEN IS BUILDING TESTING ${BUILD_TESTING}")
+
   ############### Googletest stuff ####################
   # Download and unpack googletest at configure time
   configure_file(CMakeLists.txt.in googletest-download/CMakeLists.txt)
