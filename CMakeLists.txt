@@ -93,6 +93,8 @@ set_target_properties(${LIBRARY_TARGET_NAME} PROPERTIES
   VERSION ${PROJECT_VERSION}
   PUBLIC_HEADER "${${LIBRARY_TARGET_NAME}_HDR}")
 
+
+
 # install(TARGETS ${LIBRARY_TARGET_NAME}
 #   EXPORT  ${PROJECT_NAME}
 #   COMPONENT runtime
@@ -114,17 +116,19 @@ set_target_properties(${LIBRARY_TARGET_NAME} PROPERTIES
 
 ## Testing
 option(BUILD_TESTING "Create tests using CMake" OFF)
+set(BUILD_TESTING OFF)
 if(BUILD_TESTING)
   message("OSQP EIGEN IS BUILDING TESTING ${BUILD_TESTING}")
 
   ############### Googletest stuff ####################
   # Download and unpack googletest at configure time
-  configure_file(CMakeLists.txt.in googletest-download/CMakeLists.txt)
+  message("OSQP EIGEN my binary dir = ${CMAKE_BINARY_DIR}")
+  configure_file(CMakeLists.txt.in ${CMAKE_BINARY_DIR}/googletest-download/CMakeLists.txt)
   execute_process(COMMAND ${CMAKE_COMMAND} -G "${CMAKE_GENERATOR}" .
           RESULT_VARIABLE result
           WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/googletest-download )
   if(result)
-      message(FATAL_ERROR "CMake step for googletest failed: ${result}")
+      message(FATAL_ERROR "CMake step for googletest failed: ${result}. Binary dir = ${CMAKE_BINARY_DIR}")
   endif()
   execute_process(COMMAND ${CMAKE_COMMAND} --build .
           RESULT_VARIABLE result
@@ -144,14 +148,13 @@ if(BUILD_TESTING)
           EXCLUDE_FROM_ALL)
 
   # Add executable target with all test files 
-  add_executable(test_all
+  add_executable(test_all_osqp
           tests/MPCTest.cpp
           tests/QPTest.cpp
           tests/SparseMatrixTest.cpp
           tests/UpdateMatricesTest.cpp
           )
-  target_link_libraries(test_all gtest_main ${LIBRARY_TARGET_NAME})
+  target_link_libraries(test_all_osqp gtest_main ${LIBRARY_TARGET_NAME})
   add_test(NAME test_all COMMAND test_all)
-
 endif()
 
