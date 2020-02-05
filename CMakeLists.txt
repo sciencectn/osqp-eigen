@@ -27,7 +27,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED 11)
 
 project(OsqpEigen
   LANGUAGES CXX
-  VERSION 0.4.0)
+  VERSION 0.5.2)
 
 # add GNU dirs
 include(GNUInstallDirs)
@@ -54,13 +54,11 @@ if(NOT CMAKE_CONFIGURATION_TYPES)
 endif()
 
 # find Eigen
-find_package(Eigen3 REQUIRED CONFIG)
+find_package(Eigen3 REQUIRED)
 include_directories(SYSTEM ${EIGEN3_INCLUDE_DIR})
 
 # add OSQP library
-find_package(osqp REQUIRED CONFIG)
-
-include_directories(include)
+find_package(osqp REQUIRED)
 
 set(LIBRARY_TARGET_NAME OsqpEigen)
 
@@ -85,7 +83,8 @@ add_library(${LIBRARY_TARGET_NAME} ${${LIBRARY_TARGET_NAME}_SRC} ${${LIBRARY_TAR
 target_include_directories(${LIBRARY_TARGET_NAME} PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
   "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>")
 
-target_link_libraries(${LIBRARY_TARGET_NAME} osqp::osqp Eigen3::Eigen)
+target_link_libraries(${LIBRARY_TARGET_NAME} PRIVATE Eigen3::Eigen)
+target_link_libraries(${LIBRARY_TARGET_NAME} PUBLIC osqp::osqp)
 
 add_library(OsqpEigen::OsqpEigen ALIAS OsqpEigen)
 
@@ -93,68 +92,31 @@ set_target_properties(${LIBRARY_TARGET_NAME} PROPERTIES
   VERSION ${PROJECT_VERSION}
   PUBLIC_HEADER "${${LIBRARY_TARGET_NAME}_HDR}")
 
+# List exported CMake package dependencies
+set(OSQP_EIGEN_EXPORTED_DEPENDENCIES "")
+list(APPEND OSQP_EIGEN_EXPORTED_DEPENDENCIES osqp)
 
+install(TARGETS ${LIBRARY_TARGET_NAME}
+  EXPORT  ${PROJECT_NAME}
+  COMPONENT runtime
+  LIBRARY       DESTINATION "${CMAKE_INSTALL_LIBDIR}"                            COMPONENT shlib
+  ARCHIVE       DESTINATION "${CMAKE_INSTALL_LIBDIR}"                            COMPONENT lib
+  RUNTIME       DESTINATION "${CMAKE_INSTALL_BINDIR}"                            COMPONENT bin
+  PUBLIC_HEADER DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/OsqpEigen")
 
-# install(TARGETS ${LIBRARY_TARGET_NAME}
-#   EXPORT  ${PROJECT_NAME}
-#   COMPONENT runtime
-#   LIBRARY       DESTINATION "${CMAKE_INSTALL_LIBDIR}"                            COMPONENT shlib
-#   ARCHIVE       DESTINATION "${CMAKE_INSTALL_LIBDIR}"                            COMPONENT lib
-#   RUNTIME       DESTINATION "${CMAKE_INSTALL_BINDIR}"                            COMPONENT bin
-#   PUBLIC_HEADER DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/OsqpEigen")
-
-# include(InstallBasicPackageFiles)
-# install_basic_package_files(${PROJECT_NAME}
-#   VERSION ${${PROJECT_NAME}_VERSION}
-#   COMPATIBILITY AnyNewerVersion
-#   VARS_PREFIX ${PROJECT_NAME}
-#   NO_CHECK_REQUIRED_COMPONENTS_MACRO
-#   CONFIG_TEMPLATE ${CMAKE_SOURCE_DIR}/cmake/OsqpEigenConfig.cmake.in)
-
-# include(AddUninstallTarget)
-
+include(InstallBasicPackageFiles)
+install_basic_package_files(${PROJECT_NAME}
+  VERSION ${${PROJECT_NAME}_VERSION}
+  COMPATIBILITY SameMajorVersion
+  VARS_PREFIX ${PROJECT_NAME}
+  NO_CHECK_REQUIRED_COMPONENTS_MACRO
+  DEPENDENCIES ${OSQP_EIGEN_EXPORTED_DEPENDENCIES})
 
 ## Testing
 option(BUILD_TESTING "Create tests using CMake" OFF)
-set(BUILD_TESTING OFF)
+include(CTest)
 if(BUILD_TESTING)
-  message("OSQP EIGEN IS BUILDING TESTING ${BUILD_TESTING}")
-
-  ############### Googletest stuff ####################
-  # Download and unpack googletest at configure time
-  message("OSQP EIGEN my binary dir = ${CMAKE_BINARY_DIR}")
-  configure_file(CMakeLists.txt.in ${CMAKE_BINARY_DIR}/googletest-download/CMakeLists.txt)
-  execute_process(COMMAND ${CMAKE_COMMAND} -G "${CMAKE_GENERATOR}" .
-          RESULT_VARIABLE result
-          WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/googletest-download )
-  if(result)
-      message(FATAL_ERROR "CMake step for googletest failed: ${result}. Binary dir = ${CMAKE_BINARY_DIR}")
-  endif()
-  execute_process(COMMAND ${CMAKE_COMMAND} --build .
-          RESULT_VARIABLE result
-          WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/googletest-download )
-  if(result)
-      message(FATAL_ERROR "Build step for googletest failed: ${result}")
-  endif()
-
-  # Prevent overriding the parent project's compiler/linker
-  # settings on Windows
-  set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
-
-  # Add googletest directly to our build. This defines
-  # the gtest and gtest_main targets.
-  add_subdirectory(${CMAKE_BINARY_DIR}/googletest-src
-          ${CMAKE_BINARY_DIR}/googletest-build
-          EXCLUDE_FROM_ALL)
-
-  # Add executable target with all test files 
-  add_executable(test_all_osqp
-          tests/MPCTest.cpp
-          tests/QPTest.cpp
-          tests/SparseMatrixTest.cpp
-          tests/UpdateMatricesTest.cpp
-          )
-  target_link_libraries(test_all_osqp gtest_main ${LIBRARY_TARGET_NAME})
-  add_test(NAME test_all COMMAND test_all)
+  add_subdirectory(tests)
 endif()
 
+include(AddUninstallTarget)

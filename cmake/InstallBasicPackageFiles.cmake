@@ -233,7 +233,6 @@ include(GNUInstallDirs)
 include(CMakePackageConfigHelpers)
 include(CMakeParseArguments)
 
-
 function(INSTALL_BASIC_PACKAGE_FILES _Name)
 
   # TODO check that _Name does not contain "-" characters
